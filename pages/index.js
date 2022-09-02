@@ -5,11 +5,20 @@ import PokemonFilter from "../components/PokemonFilter";
 import PokemonInfo from "../components/PokemonInfo";
 import PokemonTable from "../components/PokemonTable";
 import { Title, TwoColumnLayout, Container, Wrapper} from "../styles/styledEmotion"
+import store from "../src/store";
 
+export async function getServerSideProps() {
+  const pokemon = await (await fetch("http://localhost:3000/pokemon.json")).json()
+  return {
+    props: {
+      pokemon
+    }, 
+  }
+}
 
+export default function Home({ pokemon }) {
+  store.setPokemon(pokemon)
 
-
-export default function Home() {
   const [showing, setShowing] = React.useState(false);
 
   React.useEffect(() => {

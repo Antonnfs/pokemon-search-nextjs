@@ -11,9 +11,17 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
+export async function getServerSideProps(context) {
+	const allPokemon = await (await fetch("http://localhost:3000/pokemon.json")).json()
+	const pokemon = allPokemon.find(({id}) => id.toString() === context.query.id)
+		return {
+			props: {
+				pokemon
+			}, 
+		}
+}
 
-export default withRouter(( {router} ) => {
-	const pokemon = store.pokemon.find(({ id }) => id.toString() === router.query.id)
+export default withRouter(( { pokemon } ) => {
 	return (
 		<Wrapper> 
 			<Container>
