@@ -2,7 +2,10 @@
   "name": "pokemon-search-nextjs",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://Antonnfs.github.io/pokemon-search-nextjs",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -13,6 +16,7 @@
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
     "@mui/material": "^5.10.3",
+    "gh-pages": "^4.0.0",
     "install": "^0.13.0",
     "mobx": "^6.6.1",
     "mobx-react": "^7.5.2",
