@@ -11,9 +11,21 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 
-export async function getServerSideProps(context) {
-	const allPokemon = await (await fetch("http://localhost:3000/pokemon.json")).json()
-	const pokemon = allPokemon.find(({id}) => id.toString() === context.query.id)
+export async function getStaticPaths() {
+	const allPokemon = require('../../src/pokemon.json')
+	return {
+		paths: allPokemon.map(p => ({
+			params: {
+				id: p.id.toString()
+			}
+		})),
+		fallback: false, 
+	}
+}
+
+export async function getStaticProps(context) {
+	const allPokemon = require('../../src/pokemon.json')
+	const pokemon = allPokemon.find(({id}) => id.toString() === context .params.id)
 		return {
 			props: {
 				pokemon

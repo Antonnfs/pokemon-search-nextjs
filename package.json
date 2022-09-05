@@ -2,14 +2,14 @@
   "name": "pokemon-search-nextjs",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Antonnfs.github.io/pokemon-search-nextjs",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "export": "next export",
+    "lint": "next lint",
+    "deploy": "next build && touch out/.nojekyll && git add out/ && git commit -m \"Deploy\" && git subtree push --prefix out origin gh-pages"
+
   },
   "dependencies": {
     "@emotion/core": "^11.0.0",
